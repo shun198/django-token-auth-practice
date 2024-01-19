@@ -7,6 +7,7 @@ class DjangoSettings(BaseSettings):
     """Django関連の環境変数を設定するクラス"""
 
     SECRET_KEY: str = "django"
+    DJANGO_SETTINGS_MODULE: str = "project.settings.local"
     ALLOWED_HOSTS: str = "localhost 127.0.0.1 [::1]"
     POSTGRES_NAME: str = "django"
     POSTGRES_USER: str = "django"

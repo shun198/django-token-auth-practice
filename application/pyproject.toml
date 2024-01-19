@@ -26,6 +26,7 @@ pydantic = "^1.10.6"
 python = "^3.11"
 qrcode = "^7.4.2"
 redis = "^4.3.4"
+django-rest-knox = "^4.2.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.10.0"

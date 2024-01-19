@@ -13,13 +13,17 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class LoginSerializer(serializers.ModelSerializer):
-    """ログイン用シリアライザ"""
-
     employee_number = serializers.CharField(max_length=255)
 
     class Meta:
         model = User
         fields = ["employee_number", "password"]
+
+
+class CreateTokenSerializer(serializers.Serializer):
+    """ログイン用シリアライザ"""
+
+    user_id = serializers.UUIDField()
 
 
 class EmailSerializer(serializers.Serializer):
