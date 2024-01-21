@@ -1,3 +1,4 @@
+from django.core.validators import RegexValidator
 from rest_framework import serializers
 
 from application.models import User
@@ -13,7 +14,11 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class LoginSerializer(serializers.ModelSerializer):
-    employee_number = serializers.CharField(max_length=255)
+    employee_number = serializers.CharField(
+        max_length=8,
+        min_length=8,
+        validators=[RegexValidator(r"^[0-9]{8}$")],
+    )
 
     class Meta:
         model = User
