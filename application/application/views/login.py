@@ -4,6 +4,7 @@ from django.utils import timezone
 from knox.auth import TokenAuthentication
 from knox.models import AuthToken
 from knox.views import LoginView
+from project.settings.environment import django_settings
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
@@ -17,7 +18,6 @@ from application.serializers.user import (
     LoginSerializer,
     UserSerializer,
 )
-from project.settings.environment import django_settings
 
 
 class UserViewSet(ModelViewSet):
@@ -56,6 +56,7 @@ class CreateTokenViewSet(LoginView):
 class LoginViewSet(ViewSet):
     serializer_class = LoginSerializer
     permission_classes = [AllowAny]
+    # authentication_classes = [TokenAuthentication]
 
     @action(detail=False, methods=["POST"])
     def login(self, request):
