@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 import os
+from datetime import timedelta
 from pathlib import Path
 
 from .environment import django_settings
@@ -153,3 +154,10 @@ CORS_ALLOWED_ORIGINS = os.environ.get("TRUSTED_ORIGINS").split(" ")
 # プリフライト(事前リクエスト)の設定
 # 30分だけ許可
 CORS_PREFLIGHT_MAX_AGE = 60 * 30
+
+KNOX_TOKEN_MODEL = "knox.AuthToken"
+
+REST_KNOX = {
+    "TOKEN_TTL": timedelta(hours=2),
+    "TOKEN_LIMIT_PER_USER": 5,
+}
