@@ -11,7 +11,7 @@ from application.views.user import UserViewSet
 router = DefaultRouter(trailing_slash=False)
 router.register(r"users", UserViewSet, basename="user")
 router.register(r"", SmsViewSet, basename="sms")
-router.register(r"customer", CustomerViewSet, basename="customer")
+router.register(r"customers", CustomerViewSet, basename="customer")
 
 urlpatterns = [
     path(r"", include(router.urls)),
