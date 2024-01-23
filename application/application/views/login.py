@@ -1,6 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, JsonResponse
-from django.utils import timezone
 from knox.models import AuthToken
 from knox.views import LoginView as KnoxLoginView
 from knox.views import LogoutView as KnoxLogoutView
@@ -30,15 +29,6 @@ class LoginView(KnoxLoginView):
             )
         else:
             login(request, user)
-            token_limit_per_user = self.get_token_limit_per_user()
-            if token_limit_per_user is not None:
-                now = timezone.now()
-                token = request.user.auth_token_set.filter(expiry__gt=now)
-                if token.count() >= token_limit_per_user:
-                    return Response(
-                        {"msg": "ユーザごとに作成できるトークンの上限に達しました"},
-                        status=status.HTTP_400_BAD_REQUEST,
-                    )
             token_ttl = self.get_token_ttl()
             user = request.user
             _, token = AuthToken.objects.create(user, token_ttl)

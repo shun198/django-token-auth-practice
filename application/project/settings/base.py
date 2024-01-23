@@ -159,5 +159,4 @@ KNOX_TOKEN_MODEL = "knox.AuthToken"
 
 REST_KNOX = {
     "TOKEN_TTL": timedelta(hours=2),
-    "TOKEN_LIMIT_PER_USER": 5,
 }
